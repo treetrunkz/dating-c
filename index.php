@@ -31,14 +31,16 @@ $f3->set('sexual', array('Male', 'Female', 'Trans-Fem', 'Trans-Masc', 'Non-Binar
 $f3->set('genders', array('Male', 'Female', 'Trans-Fem', 'Trans-Masc', 'Non-Binary'));
 $f3->set('condiments', array('ketchup', 'mayonnaise', 'mustard'));
 
-//Define a default route
+//Define a default route == home page
 $f3->route('GET /', function() {
 
     $view = new Template();
     echo $view->render('views/order-base.html');
 
 });
-
+/*
+ * first order hive and validation & form submit
+ */
 //Define an order route
 $f3->route('GET|POST /order', function($f3) {
 
@@ -88,7 +90,9 @@ $f3->route('GET|POST /order', function($f3) {
     $view = new Template();
     echo $view->render('views/order-form.html');
 });
-
+/*
+ *  Get|POST for order 2, email seeking state and bio
+ */
 $f3->route('GET|POST /order2', function() use ($f3) {
 
 
@@ -114,13 +118,15 @@ $f3->route('GET|POST /order2', function() use ($f3) {
                 $f3->reroute('order3');
             }
         }
-
     
     $view = new Template();
     echo $view->render('views/order-form2.html');
 
 });
 
+/*
+ * setting variables and validation + population GET|POST for order3
+ */
 $f3->route('GET|POST /order3', function($f3) {
     if(!empty($_POST)) {
 
@@ -152,7 +158,7 @@ $f3->route('GET|POST /order3', function($f3) {
 
 });
 
-//Define a summary route
+//Define a summary route this holds all of the variables for 'creating' the profile page
 $f3->route('GET /summary', function($f3) {
 
 
