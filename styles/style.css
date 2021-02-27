@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+/*adding a css comment*/
 div.col-content {
     opacity: 0.8;
     width: 100%;
@@ -10,15 +11,18 @@ div.col-content {
     margin-top: 7.5%;
     padding: 2%
 }
+/*this is the background*/
 div#background-img.background.overlay {
     background-image: url(https://images.hdqwalls.com/download/hot-air-balloon-1920x1080.jpg);
     width: 100%;
     height: 100%;
     position: absolute;
 }
+/*this is a border*/
 .border {
     border:1px solid #cecece;
 }
+/*some dumb thing*/
 h1#sum {
     text-align:center;
 }

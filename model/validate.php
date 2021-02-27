@@ -23,7 +23,7 @@ function validForm()
     if (!validAge($f3->get('age'))) {
 
         $isValid = true;
-        $f3->set("errors['age']", "Please enter a numeric");
+        $f3->set("errors['age']", "Please enter a numeric between 118 and 18");
     }
 
     if (!validGender($f3->get('gender'))) {
@@ -35,12 +35,6 @@ function validForm()
     if (!validPhone($f3->get('phone'))) {
         $isValid = false;
         $f3->set("errors['phone']", "Please enter a properly formatted number");
-    }
-
-    if (!validCondiments($f3->get('cond'))) {
-
-        $isValid = false;
-        $f3->set("errors['cond']", "Invalid selection");
     }
 
     return $isValid;
@@ -129,7 +123,7 @@ function validLast($last)
  */
 function validAge($age)
 {
-    return !empty($age) && ctype_digit($age);
+    return !empty($age) && ctype_digit($age) && $age > 18 && $age < 118;
 }
 /* Validate a gender
  *
