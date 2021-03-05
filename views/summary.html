@@ -35,37 +35,47 @@
 
 <div class="row">
     <div class="col-lg-12 border mx-5">
-<p>First Name: {{ @SESSION.first }}</p>
+<p>First Name: {{ @first }}</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12 border mx-5">
-<p>Last Name: {{ @SESSION.last }}</p>
+<p>Last Name: {{ @last }}</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12 border mx-5">
-<p>Age: {{ @SESSION.age }}</p>
+<p>Age: {{ @age }}</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12 border mx-5">
-<p>Gender: {{ @SESSION.gender }} And You Are Seeking: {{ @SESSION.seeking }}</p>
+<p>Gender: {{ @gender }} And You Are Seeking: {{ @SESSION.seeking }}</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12 border mx-5">
-<p>State: {{ @SESSION.state }}</p>
+<p>State: {{ @state }}</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12 border mx-5">
-<p>Interests: {{ @SESSION.outdoor }} {{ @SESSION.indoor }}</p>
+        <check if="{{ isset(@indoor) || isset($outdoor)}}">
+            <p>Interests: </p>
+            <repeat group="{{ @indoor }}" value="{{ @indoor }}">
+                <p>{{ @indoor }}</p>
+            </repeat>
+
+            <repeat group="{{ @outdoor }}" value="{{ @outdoor }}">
+                <p>{{ @outdoor }}</p>
+            </repeat>
+        </check>
+
     </div>
 </div>
 </div>
@@ -75,7 +85,7 @@
 <div class="col mx-5 my-3 float-right">
     <div class="content col mx-5 my-3 float-right">
     <img src="https://i.pinimg.com/originals/b2/09/e0/b209e0579044a0a4c441ed493c20dc43.jpg" style="width: 50%; margin-left: auto; margin-right: auto;">
-<p>Biography: {{ @SESSION.biography }} </p>
+<p>Biography: {{ @biography }} </p>
     </div>
 </div></div>
 <!--<p>Checks: {{ @SESSION.test1 }} {{ @SESSION.test2 }}</p>-->
