@@ -82,6 +82,15 @@
             <span class="err">{{ @errors['phone'] }}</span>
         </check>
     </label>
+                            <div class="form-group">
+                                <check if="{{ @premium=='true'}}">
+                                    <true>
+                                        <label><input type="checkbox" name="premium" checked>Sign me up for a Premium Account!</label>
+                                    </true>
+                                    <false>
+                                        <label><input type="checkbox" name="premium">Sign me up for a Premium Account!</label>
+                                    </false>
+                                </check>
     <br><br>
                         </div>
                 </div>
