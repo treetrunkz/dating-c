@@ -14,7 +14,7 @@ class Validate
     {
         $this->_dataLayer = new DataLayer();
     }
-
+    
     /* Validate a first
      * Food must not be empty and may only consist
      * of alphabetic characters.
@@ -86,15 +86,21 @@ class Validate
      * @param String outdoor
      * validate indoor inputs.
      */
-    function validOutdoor($outdoor): bool
+    function validOutdoor($outdoor)
     {
-    $validOutdoor = $this->_dataLayer->getOutdoor();
-    foreach ($outdoor as $outdoorOptions) {
-        if(!in_array($outdoorOptions, $validOutdoor)) {
-            return false;
+        global $f3;
+
+        if (empty($outdoor)) {
+            return true;
         }
-    }
-    return true;
+
+        //But if there are condiments, we need to make sure they're valid
+        foreach ($outdoor as $outdoors) {
+            if (!in_array($outdoors, $f3->get('outdoor'))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /* Validate Indoor
@@ -102,15 +108,57 @@ class Validate
      * @param String indoor
      * validate indoor inputs.
      */
-    function validIndoor($indoor): bool
+    function validIndoor($indoor)
     {
-        $validIndoor = $this->_dataLayer->getIndoor();
-        foreach ($indoor as $indoorOptions) {
-            if(!in_array($indoorOptions, $validIndoor)) {
+        global $f3;
+
+        if (empty($indoor)) {
+            return true;
+        }
+
+        //But if there are condiments, we need to make sure they're valid
+        foreach ($indoor as $indoors) {
+            if (!in_array($indoors, $f3->get('indoor'))) {
                 return false;
             }
         }
+
         return true;
+    }
+
+    /* Validate seeking
+     *
+     * @param String seeking
+     * @return boolean
+     */
+    function validSeeking($seeking)
+    {
+        global $f3;
+
+        if (empty($seeking)) {
+            return true;
+        }
+
+        return true;
+    }
+
+    /* Validate Biography
+     *
+     * @param String biography
+     * @return boolean
+     */
+    function validBiography($biography)
+    {
+        return !empty($biography);
+    }
+
+    /*
+     * Validate State
+     * placeholder
+     */
+    function validState($state)
+    {
+        return !empty($state);
     }
 
 

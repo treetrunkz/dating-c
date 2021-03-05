@@ -2,7 +2,6 @@
 class PremiumUser extends User
 {
 
-
     private $_indoor;
     private $_outdoor;
 
@@ -13,6 +12,9 @@ class PremiumUser extends User
         $this->_outdoor = $_outdoor;
     }
 
+    public function isMember(){
+        return true;
+    }
     /**
      * @return mixed|string
      */

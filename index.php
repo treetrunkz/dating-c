@@ -44,7 +44,7 @@ $f3->route('GET /', function() {
  * first order hive and validation & form submit
  */
 //Define an order route
-$f3->route('GET|POST /order', function($f3) {
+$f3->route('GET|POST /order', function() {
 
     //If form has been submitted, validate
     global $controller;
@@ -66,7 +66,7 @@ $f3->route('GET|POST /order2', function() use ($f3) {
 /*
  * setting variables and validation + population GET|POST for order3
  */
-$f3->route('GET|POST /order3', function($f3) {
+$f3->route('GET|POST /order3', function() {
 
     //If form has been submitted, validate
     global $controller;
@@ -75,12 +75,12 @@ $f3->route('GET|POST /order3', function($f3) {
 });
 
 //Define a summary route this holds all of the variables for 'creating' the profile page
-$f3->route('GET /summary', function($f3) {
+$f3->route('GET /summary', function() {
 
     //Display summary
     global $controller;
     $controller->summary();
-    
+
 });
 
 //Run Fat-Free

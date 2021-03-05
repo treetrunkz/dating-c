@@ -9,7 +9,7 @@ class Controller
         $this->_f3 = $f3;
     }
     
-    function homepage()
+    function home()
     {
         session_destroy();
         $view = new Template();
@@ -157,7 +157,7 @@ class Controller
 
             }
         $view = new Template();
-        echo $view->render('views/interests.html');
+        echo $view->render('views/order-form3.html');
 }
     function summary() {
         $member = unserialize($_SESSION['$member']);

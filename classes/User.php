@@ -22,6 +22,7 @@ class User
         $this->_phone = $_phone;
         $this->_member = $_member;
     }
+
     /**
      * @return mixed
      */
@@ -181,4 +182,4 @@ class User
     {
         $this->_biography = $biography;
     }
-
+}
