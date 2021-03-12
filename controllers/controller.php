@@ -3,7 +3,7 @@
 class Controller
 {
     private $_f3;
-    
+
     function __construct($f3)
     {
         $this->_f3 = $f3;
@@ -17,8 +17,9 @@ class Controller
     }
     
     function order() {
+
         global $validator;
-        
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $first = $_POST['first'];
         $last = $_POST['last'];
@@ -66,11 +67,11 @@ class Controller
                   }
         }
         //Sticky
-        $this->_f3->set('fName', isset($first) ? $first : "");
-        $this->_f3->set('lName', isset($last) ? $last  : "");
+        $this->_f3->set('first', isset($first) ? $first : "");
+        $this->_f3->set('last', isset($last) ? $last  : "");
         $this->_f3->set('age', isset($age) ? $age : "");
         $this->_f3->set('gender', isset($gender) ? $gender : "");
-        $this->_f3->set('number', isset($phone) ? $phone : "");
+        $this->_f3->set('phone', isset($phone) ? $phone : "");
         $this->_f3->set('premium', isset($premium) ? $premium : "");
 
         $view = new Template();
@@ -80,18 +81,20 @@ class Controller
     {
 
         global $validator;
+//        $dataLayer = new DataLayer();
         $member = unserialize($_SESSION['$member']);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
             $state = $_POST['state'];
             $seeking = $_POST['seeking'];
+            $_SESSION['seeking'] = $seeking;
             $biography = $_POST['biography'];
 
             if (!$validator->validEmail($email)) {
                 $this->_f3->set('errors["email"]', "Email must be valid format and non empty");
             }
-        }
+
 
         if (empty($this->_f3->get('errors'))) {
             $member->setEmail($email);
@@ -106,14 +109,16 @@ class Controller
                 $this->_f3->reroute('/summary');
             }
         }
+        }
+
         //Sticky data
         $this->_f3->set('email', isset($email) ? $email : "");
         $this->_f3->set('state', isset($state) ? $state : "");
-        $this->_f3->set('seeking', isset($seeking) ? $seeking : "");
+//        $this->_f3->set('seeking', isset($seeking) ? $seeking : "");
         $this->_f3->set('biography', isset($biography) ? $biography : "");
-
+//        $this->_f3->set('seeking', array($dataLayer->getSeeking()));
         $view = new Template();
-        echo $view->render('views/order2');
+        echo $view->render('views/order-form2.html');
     }
 
     function order3()
@@ -143,7 +148,7 @@ class Controller
                     $member->setIndoor($indoorString);
                 }
 
-                //Set outdoor activites
+                //Set outdoor activities
                 if (isset($outdoor)) {
                     $outdoorString = implode(", ", $outdoor);
                     $member->setOutdoor($outdoorString);
@@ -160,7 +165,9 @@ class Controller
         echo $view->render('views/order-form3.html');
 }
     function summary() {
+        
         $member = unserialize($_SESSION['$member']);
+        $this->_f3->set('seeking', $member->getSeeking());
         $this->_f3->set('first', $member->getFirst());
         $this->_f3->set('last', $member->getLast());
         $this->_f3->set('age' , $member->getAge());
@@ -168,9 +175,11 @@ class Controller
         $this->_f3->set('phone', $member->getPhone());
         $this->_f3->set('email', $member->getEmail());
         $this->_f3->set('state', $member->getState());
-        $this->_f3->set('seeking', $member->getSeeking());
         $this->_f3->set('biography', $member->getBiography());
-
+        if (!$member->isMember()){
+            $this->_f3->set('indoor', "");
+            $this->_f3->set('outdoor', "");
+        }
         if ($member->isMember()){
             $this->_f3->set('indoor', array($member->getIndoor()));
             $this->_f3->set('outdoor', array($member->getOutdoor()));

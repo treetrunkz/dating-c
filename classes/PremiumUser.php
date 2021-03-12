@@ -12,13 +12,14 @@ class PremiumUser extends User
         $this->_outdoor = $_outdoor;
     }
 
-    public function isMember(){
+    public function isMember(): bool
+    {
         return true;
     }
     /**
      * @return mixed|string
      */
-    public function getIndoor()
+    public function getIndoor(): string
     {
         return $this->_indoor;
     }
@@ -34,7 +35,7 @@ class PremiumUser extends User
     /**
      * @return mixed|string
      */
-    public function getOutdoor()
+    public function getOutdoor(): string
     {
         return $this->_outdoor;
     }

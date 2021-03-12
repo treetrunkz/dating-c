@@ -12,6 +12,8 @@ class User
     private $_state;
     private $_seeking;
     private $_biography;
+    private $_indoor = "";
+    private $_outdoor = "";
 
     public function __construct($_first, $_last, $_age, $_gender, $_phone, $_member = false)
     {
@@ -22,7 +24,10 @@ class User
         $this->_phone = $_phone;
         $this->_member = $_member;
     }
-
+    public function isMember(): bool
+    {
+        return false;
+    }
     /**
      * @return mixed
      */
@@ -106,7 +111,7 @@ class User
     /**
      * @return mixed
      */
-    public function getMember()
+    public function getMember(): bool
     {
         return $this->_member;
     }
@@ -162,6 +167,7 @@ class User
     /**
      * @param mixed $seeking
      */
+
     public function setSeeking($seeking)
     {
         $this->_seeking = $seeking;
@@ -181,5 +187,20 @@ class User
     public function setBiography($biography)
     {
         $this->_biography = $biography;
+    }
+    /**
+     * @return mixed|string
+     */
+    public function getOutdoor(): string
+    {
+        return "";
+    }
+
+    /**
+     * @param mixed|string $outdoor
+     */
+    public function setOutdoor($outdoor)
+    {
+        return "";
     }
 }
